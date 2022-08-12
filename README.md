@@ -56,3 +56,10 @@ Data is cached on the frontend with `NgRx` and local storage (to persist user lo
 Exceptions are handled with Sentry on both frontend and backend (to different DSNs - both development and production still use the same DSN though).
 
 Branching strategy is visible on this repository (adding a feature).
+
+### Further improvement ideas
+Things that could be improved upon:
+* HTTPS
+* localization for content (entries in the DB for SL and EN languages)
+* detail page for each item (to make use of the `GET beaches/{id}` endpoint)
+* separate Sentry logs for production and development (and other environments)
