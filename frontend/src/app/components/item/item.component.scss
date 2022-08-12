@@ -1,0 +1,19 @@
+.description {
+  height: 100px;
+  position: relative;
+  cursor: pointer;
+  padding-bottom: 25px;
+
+  &:after{
+    content: "";
+    position: absolute; top: 0; bottom: 0; left: -15px; right: -15px;
+    -webkit-box-shadow: inset 0px -31px 22px -10px rgba(255,255,255,1);
+    -moz-box-shadow: inset 0px -31px 22px -10px rgba(255,255,255,1);
+    box-shadow: inset 0px -31px 22px -10px rgba(255,255,255,1);
+  }
+
+  &.active {
+    height: auto;
+    cursor: auto;
+  }
+}

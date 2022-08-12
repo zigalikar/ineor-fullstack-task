@@ -1,0 +1,9 @@
+<div mat-dialog-content>{{ 'DELETE.CONFIRM' | translate: data }}</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="confirm()" color="warn" [disabled]="deleting">
+    {{ 'LIST.DELETE' | translate }}
+  </button>
+  <button mat-button mat-dialog-close cdkFocusInitial>
+    {{ 'COMMON.CANCEL' | translate }}
+  </button>
+</div>

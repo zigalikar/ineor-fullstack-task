@@ -1,0 +1,43 @@
+{
+  "APP": {
+    "TITLE": "Beaches"
+  },
+  "LIST": {
+    "SEARCH": "Search ...",
+    "CREATE": "Create",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "EMPTY": "No items to display.",
+    "SORT": {
+      "TITLE": "Sort by"
+    }
+  },
+  "ITEM": {
+    "NAME": "Name",
+    "DESCRIPTION": "Description",
+    "IMAGE_URL": "Image URL",
+    "COUNTRY": "Country",
+    "SHOW_MORE": "Show more",
+    "SHOW_LESS": "Show less"
+  },
+  "DELETE": {
+    "CONFIRM": "Are you sure you want to delete '{{name}}'?",
+    "SUCCESSFUL": "Successfully deleted",
+    "FAILED": "An error occured when deleting"
+  },
+  "CREATE": {
+    "SUCCESSFUL": "Successfully deleted",
+    "FAILED": "An error occured when saving"
+  },
+  "USER": {
+    "LOGIN": "Login",
+    "LOGOUT": "Logout",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "SUCCESSFUL": "Successfully logged in as '{{username}}'",
+    "FAILURE": "Invalid username or password"
+  },
+  "COMMON": {
+    "CANCEL": "Cancel"
+  }
+}

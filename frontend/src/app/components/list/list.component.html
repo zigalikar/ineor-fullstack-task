@@ -1,0 +1,78 @@
+<!-- add -->
+<button
+  *ngIf="user | async"
+  mat-raised-button
+  color="primary"
+  (click)="create()">
+  {{ 'LIST.CREATE' | translate }}
+</button>
+
+<!-- search & filters -->
+<div class="flex items-center mt-16" [formGroup]="form">
+  <!-- search -->
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'LIST.SEARCH' | translate }}</mat-label>
+    <input type="text" matInput formControlName="search" />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <!-- sort by -->
+  <mat-form-field appearance="fill" class="ml-auto">
+    <mat-label>{{ 'LIST.SORT.TITLE' | translate }}</mat-label>
+    <mat-select formControlName="sortBy">
+      <mat-option *ngFor="let option of sortOptions" [value]="option.value">
+        {{ option.name | translate }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<!-- items -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+  <ng-template #loading>
+    <app-skeleton *ngFor="let _ of 6 | times"></app-skeleton>
+  </ng-template>
+  <ng-container *ngIf="items; else loading">
+    <!-- items -->
+    <app-item
+      *ngFor="let item of items"
+      [item]="item"
+      (modified)="load()"
+      class="item-card"></app-item>
+
+    <!-- pagination -->
+    <div class="col-span-1 md:col-span-2 lg:col-span-3">
+      <!-- no items notice -->
+      <div *ngIf="items.length === 0" class="text-center">
+        {{ 'LIST.EMPTY' | translate }}
+      </div>
+
+      <!-- pagination -->
+      <div
+        *ngIf="items.length > 0 && pagesCount > 1"
+        class="flex items-center justify-center pagination">
+        <button
+          mat-mini-fab
+          color=""
+          (click)="navigateToPage(page - 1)"
+          [disabled]="page === 0">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button
+          *ngFor="let _ of pagesCount | times; index as i"
+          mat-mini-fab
+          [color]="page === i ? 'primary' : ''"
+          (click)="navigateToPage(i)">
+          {{ i + 1 }}
+        </button>
+        <button
+          mat-mini-fab
+          color=""
+          (click)="navigateToPage(page + 1)"
+          [disabled]="page === pagesCount - 1">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>

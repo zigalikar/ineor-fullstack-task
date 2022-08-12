@@ -1,0 +1,43 @@
+{
+  "APP": {
+    "TITLE": "Plaže"
+  },
+  "LIST": {
+    "SEARCH": "Iskanje ...",
+    "CREATE": "Ustvari",
+    "EDIT": "Uredi",
+    "DELETE": "Izbriši",
+    "EMPTY": "Ni nobenih vnosov.",
+    "SORT": {
+      "TITLE": "Razvrsti po"
+    }
+  },
+  "ITEM": {
+    "NAME": "Ime",
+    "DESCRIPTION": "Opis",
+    "IMAGE_URL": "URL do slike",
+    "COUNTRY": "Država",
+    "SHOW_MORE": "Prikaži več",
+    "SHOW_LESS": "Prikaži manj"
+  },
+  "DELETE": {
+    "CONFIRM": "Ali ste prepričani, da želite izbrisati '{{name}}'?",
+    "SUCCESSFUL": "Uspešno izbrisano",
+    "FAILED": "Med brisanjem je prišlo do napake"
+  },
+  "CREATE": {
+    "SUCCESSFUL": "Uspešno shranjeno",
+    "FAILED": "Med shranjevanjem je prišlo do napake"
+  },
+  "USER": {
+    "LOGIN": "Vpis",
+    "LOGOUT": "Izpis",
+    "USERNAME": "Ime",
+    "PASSWORD": "Geslo",
+    "SUCCESSFUL": "Uspešen vpis v račun '{{username}}'",
+    "FAILURE": "Nepravilno ime ali geslo"
+  },
+  "COMMON": {
+    "CANCEL": "Prekliči"
+  }
+}
