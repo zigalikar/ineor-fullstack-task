@@ -13,8 +13,9 @@ export class AppService {
   constructor(private http: HttpClient) {}
 
   public getList(query?: string, page: number = 0, perPage = 5, sortBy = 'name'): Observable<{ items: Beach[]; totalCount: number }> {
-    console.log(this.baseUrl);
-    return this.http.get<{ items: Beach[]; totalCount: number }>(`${this.baseUrl}/beaches?query=${query}&page=${page}&perPage=${perPage}&sortBy=${sortBy}`).pipe(catchError(() => of({ items: [], totalCount: 0 })));
+    return this.http
+      .get<{ items: Beach[]; totalCount: number }>(`${this.baseUrl}/beaches?query=${query ? encodeURI(query) : ''}&page=${page}&perPage=${perPage}&sortBy=${sortBy ?  encodeURI(sortBy) : ''}`)
+      .pipe(catchError(() => of({ items: [], totalCount: 0 })));
   }
 
   public get(id: string): Observable<Beach | undefined> {
