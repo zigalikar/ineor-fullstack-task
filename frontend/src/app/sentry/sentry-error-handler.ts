@@ -9,9 +9,9 @@ export class SentryErrorHandler implements ErrorHandler {
       dsn: environment.sentryDsn,
       environment: environment.name,
       tracesSampleRate: 1.0,
-    })
+    });
   }
-  
+
   handleError(error: any) {
     Sentry.captureException(error.originalError || error);
   }

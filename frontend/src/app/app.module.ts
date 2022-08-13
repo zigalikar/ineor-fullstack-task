@@ -4,7 +4,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ListComponent } from './components/list/list.component';
 import { CreateComponent } from './components/dialogs/create/create.component';
@@ -20,7 +24,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { TimesPipe } from './pipes/times.pipe';
@@ -38,7 +42,16 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, CreateComponent, DeleteComponent, SkeletonComponent, TimesPipe, ItemComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    ListComponent,
+    CreateComponent,
+    DeleteComponent,
+    SkeletonComponent,
+    TimesPipe,
+    ItemComponent,
+    LoginComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -48,19 +61,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule.forRoot({
       defaultLanguage: 'sl',
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient],
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
       },
     }),
     StoreModule.forRoot({
       items: itemsReducer,
       user: userReducer,
     }),
-    EffectsModule.forRoot([
-      ItemsEffects,
-      UserEffects,
-    ]),
+    EffectsModule.forRoot([ItemsEffects, UserEffects]),
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
@@ -81,7 +91,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    }
+    },
   ],
   bootstrap: [AppComponent],
 })

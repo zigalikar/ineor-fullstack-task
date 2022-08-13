@@ -15,12 +15,18 @@ import { selectUser } from './store/user/user.selectors';
 export class AppComponent implements OnInit {
   user = this.store.select(selectUser);
 
-  constructor(private translate: TranslateService, private store: Store, public userService: UserService, private dialog: MatDialog, private cd: ChangeDetectorRef) {}
+  constructor(
+    private translate: TranslateService,
+    private store: Store,
+    public userService: UserService,
+    private dialog: MatDialog,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(loginLocalStorage());
   }
-  
+
   changeLanguage(language: string): void {
     this.translate.use(language);
   }

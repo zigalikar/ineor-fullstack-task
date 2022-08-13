@@ -14,11 +14,8 @@ describe('CreateComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CreateComponent],
-      providers: [
-        { provide: AppService, useValue: service },
-      ],
-    })
-    .compileComponents();
+      providers: [{ provide: AppService, useValue: service }],
+    }).compileComponents();
   });
 
   beforeEach(() => {

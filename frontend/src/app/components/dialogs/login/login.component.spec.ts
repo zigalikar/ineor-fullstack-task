@@ -14,11 +14,8 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      providers: [
-        { provide: Store, useValue: store },
-      ],
-    })
-    .compileComponents();
+      providers: [{ provide: Store, useValue: store }],
+    }).compileComponents();
   });
 
   beforeEach(() => {

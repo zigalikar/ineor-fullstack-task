@@ -25,8 +25,7 @@ describe('ListComponent', () => {
         { provide: Store, useValue: store },
         { provide: MatDialog, useValue: dialog },
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -4,7 +4,14 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
-import { login, loginError, loginLocalStorage, loginSuccess, logout, logoutSuccess } from './user.actions';
+import {
+  login,
+  loginError,
+  loginLocalStorage,
+  loginSuccess,
+  logout,
+  logoutSuccess,
+} from './user.actions';
 import { UserService } from '../../services/user.service';
 import { JwtToken } from '../../model/jwt-token.model';
 
@@ -17,29 +24,35 @@ export class UserEffects {
   login$ = createEffect(() =>
     this.action$.pipe(
       ofType(login),
-      switchMap(({ username, password }) => this.userService.login(username, password).pipe(
-        map(({ accessToken }) => this.processAccessToken(accessToken)),
-        catchError(() => of(loginError())),
-      )),
+      switchMap(({ username, password }) =>
+        this.userService.login(username, password).pipe(
+          map(({ accessToken }) => this.processAccessToken(accessToken)),
+          catchError(() => of(loginError()))
+        )
+      )
     )
   );
 
   loginLocalStorage = createEffect(() =>
     this.action$.pipe(
       ofType(loginLocalStorage),
-      map(() => this.processAccessToken(localStorage.getItem(this.localStorageKey) as string | undefined))
+      map(() =>
+        this.processAccessToken(
+          localStorage.getItem(this.localStorageKey) as string | undefined
+        )
+      )
     )
   );
 
   logout$ = createEffect(() =>
     this.action$.pipe(
       ofType(logout),
-      map(() =>  {
+      map(() => {
         localStorage.removeItem(this.localStorageKey);
         Sentry.configureScope(scope => scope.setUser(null));
         return logoutSuccess();
-      }),
-    ),
+      })
+    )
   );
 
   private processAccessToken(accessToken: string | undefined): Action {
@@ -49,7 +62,7 @@ export class UserEffects {
         // expired - logout
         return logout();
       }
-      
+
       // not expired - login user
       localStorage.setItem(this.localStorageKey, accessToken);
       return loginSuccess({
@@ -57,7 +70,7 @@ export class UserEffects {
         user: {
           username: payload.given_name,
           role: payload.role,
-        }
+        },
       });
     }
     return loginError(); // login failed

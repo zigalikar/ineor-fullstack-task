@@ -4,7 +4,7 @@ import { catchError, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   private baseUrl = environment.apiUrl;
@@ -12,10 +12,11 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   public login(username: string, password: string) {
-    return this.http.post<{ accessToken: string }>(`${this.baseUrl}/login`, {
-      username,
-      password
-    })
-    .pipe(catchError(() => of({ accessToken: undefined })));
+    return this.http
+      .post<{ accessToken: string }>(`${this.baseUrl}/login`, {
+        username,
+        password,
+      })
+      .pipe(catchError(() => of({ accessToken: undefined })));
   }
 }

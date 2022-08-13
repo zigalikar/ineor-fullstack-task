@@ -17,11 +17,16 @@ export const initialState: UserState = {
 
 export const userReducer = createReducer(
   initialState,
-  on(login, (state) => ({ ...state, user: undefined, loggingIn: true })),
+  on(login, state => ({ ...state, user: undefined, loggingIn: true })),
   on(loginSuccess, (state, { user, accessToken }) => {
     Sentry.configureScope(scope => scope.setUser({ username: user.username }));
     return { ...state, user, accessToken, loggingIn: false };
   }),
-  on(loginError, (state) => ({ ...state, loggingIn: false })),
-  on(logoutSuccess, (state) => ({ ...state, user: undefined, accessToken: undefined, loggingIn: false })),
+  on(loginError, state => ({ ...state, loggingIn: false })),
+  on(logoutSuccess, state => ({
+    ...state,
+    user: undefined,
+    accessToken: undefined,
+    loggingIn: false,
+  }))
 );
