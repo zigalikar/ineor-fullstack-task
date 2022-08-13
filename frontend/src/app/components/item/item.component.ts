@@ -1,4 +1,13 @@
-import { Component, ElementRef, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateComponent } from '../dialogs/create/create.component';
 import { Subject, takeUntil } from 'rxjs';
@@ -12,13 +21,15 @@ import { countries } from '../../data/countries';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss']
+  styleUrls: ['./item.component.scss'],
 })
 export class ItemComponent implements OnChanges, OnDestroy {
   @Input() item!: Beach;
   @Output() modified = new Subject<void>();
 
-  @ViewChild('description') description: ElementRef<HTMLParagraphElement> | undefined;
+  @ViewChild('description') description:
+    | ElementRef<HTMLParagraphElement>
+    | undefined;
 
   user = this.store.select(selectUser);
 
@@ -28,11 +39,17 @@ export class ItemComponent implements OnChanges, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private dialog: MatDialog, private store: Store, public userService: UserService) {}
+  constructor(
+    private dialog: MatDialog,
+    private store: Store,
+    public userService: UserService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['item'])
-      this.countryName = countries.find((country) => country.code === this.item.country)?.name;
+      this.countryName = countries.find(
+        country => country.code === this.item.country
+      )?.name;
   }
 
   ngOnDestroy(): void {
@@ -41,31 +58,35 @@ export class ItemComponent implements OnChanges, OnDestroy {
   }
 
   edit(): void {
-    this.dialog.open(CreateComponent, {
-      data: this.item,
-    })
-    .afterClosed()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((edited) => {
-      if (edited)
-        this.modified.next();
-    });
+    this.dialog
+      .open(CreateComponent, {
+        data: this.item,
+      })
+      .afterClosed()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(edited => {
+        if (edited) this.modified.next();
+      });
   }
 
   delete(): void {
-    this.dialog.open(DeleteComponent, {
-      data: this.item
-    })
-    .afterClosed()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((deleted) => {
-      if (deleted)
-        this.modified.next();
-    });
+    this.dialog
+      .open(DeleteComponent, {
+        data: this.item,
+      })
+      .afterClosed()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(deleted => {
+        if (deleted) this.modified.next();
+      });
   }
 
   toggleDescription(): void {
     this.description?.nativeElement.classList.toggle('active');
-    this.buttonText = this.description?.nativeElement.classList.contains('active') ? 'ITEM.SHOW_LESS' : 'ITEM.SHOW_MORE';
+    this.buttonText = this.description?.nativeElement.classList.contains(
+      'active'
+    )
+      ? 'ITEM.SHOW_LESS'
+      : 'ITEM.SHOW_MORE';
   }
 }

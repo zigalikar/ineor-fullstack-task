@@ -14,11 +14,8 @@ describe('ItemComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ItemComponent],
-      providers: [
-        { provide: MatDialog, useValue: dialog },
-      ],
-    })
-    .compileComponents();
+      providers: [{ provide: MatDialog, useValue: dialog }],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -14,11 +14,8 @@ describe('DeleteComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DeleteComponent],
-      providers: [
-        { provide: AppService, useValue: service },
-      ],
-    })
-    .compileComponents();
+      providers: [{ provide: AppService, useValue: service }],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -6,13 +6,16 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../store/user/user.selectors';
 import { Beach } from '../../model/beach.model';
-import { selectItems, selectTotalCount } from '../../store/items/items.selectors';
+import {
+  selectItems,
+  selectTotalCount,
+} from '../../store/items/items.selectors';
 import { loadItems } from '../../store/items/items.actions';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit, OnDestroy {
   items: Beach[] | undefined;
@@ -43,23 +46,25 @@ export class ListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.form.valueChanges
       .pipe(
-        tap(() => this.items = undefined),
+        tap(() => (this.items = undefined)),
         takeUntil(this.destroy$),
         debounceTime(500),
-        startWith({}),
+        startWith({})
       )
       .subscribe(() => this.load());
 
-    this.store.select(selectItems)
+    this.store
+      .select(selectItems)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((items) => this.items = items);
+      .subscribe(items => (this.items = items));
 
-    this.store.select(selectTotalCount)
+    this.store
+      .select(selectTotalCount)
       .pipe(
         takeUntil(this.destroy$),
-        filter((count) => !!count),
+        filter(count => !!count)
       )
-      .subscribe((count) => this.pagesCount = Math.ceil(count! / this.perPage));
+      .subscribe(count => (this.pagesCount = Math.ceil(count! / this.perPage)));
   }
 
   ngOnDestroy(): void {
@@ -68,12 +73,12 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   create(): void {
-    this.dialog.open(CreateComponent)
+    this.dialog
+      .open(CreateComponent)
       .afterClosed()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((created) => {
-        if (created)
-          this.load();
+      .subscribe(created => {
+        if (created) this.load();
       });
   }
 
@@ -83,11 +88,13 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   load() {
-    this.store.dispatch(loadItems({
-      query: this.form.get('search')?.value ?? '',
-      sortBy: this.form.get('sortBy')?.value,
-      page: this.page,
-      perPage: this.perPage,
-    }));
+    this.store.dispatch(
+      loadItems({
+        query: this.form.get('search')?.value ?? '',
+        sortBy: this.form.get('sortBy')?.value,
+        page: this.page,
+        perPage: this.perPage,
+      })
+    );
   }
 }

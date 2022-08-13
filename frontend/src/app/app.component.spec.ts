@@ -33,8 +33,7 @@ describe('AppComponent', () => {
         { provide: TranslateService, useValue: translate },
         { provide: MatDialog, useValue: dialog },
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
