@@ -1,6 +1,5 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-EXPOSE 5001
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
@@ -18,5 +17,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 COPY ./IneorTaskBackend/wait-for-it.sh /wait-for-it.sh
 RUN chmod +x /wait-for-it.sh
-#ENTRYPOINT ["dotnet", "IneorTaskBackend.dll"]
-ENTRYPOINT ["/wait-for-it.sh", "localhost:3306", "--", "dotnet", "IneorTaskBackend.dll", "--environment", "Production"]
+
+# this config should be taken by Heroku - Docker overrides these variable in docker-compose.yml
+CMD ASPNETCORE_ENVIRONMENT=Production ; PORT=$PORT
+ENTRYPOINT ["/wait-for-it.sh", "localhost:3306", "--", "dotnet", "IneorTaskBackend.dll"]

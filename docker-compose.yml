@@ -1,3 +1,4 @@
+# for running the whole stack locally in Docker containers
 version: '3.3'
 services:
 
@@ -19,6 +20,9 @@ services:
     restart: always
     links:
       - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Staging
+      - PORT=5001
 
   frontend:
     build: ./frontend
@@ -28,6 +32,9 @@ services:
     restart: always
     links:
       - api
+    environment:
+      - ENVIRONMENT=staging
+      - PORT=80
 
 volumes:
   data:

@@ -17,20 +17,24 @@ namespace IneorTaskBackend.Context
             modelBuilder.Entity<Beach>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasMaxLength(36);
 
                 entity.Property(e => e.Name)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Description)
                     .IsRequired()
                     .HasMaxLength(1000);
 
                 entity.Property(e => e.ImageUrl)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasMaxLength(200);
 
                 entity.Property(e => e.Country)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasMaxLength(2);
 
                 entity.ToTable("beaches");
                 entity.HasData(SeedHelper.GetBeachesSeedData());
@@ -39,7 +43,8 @@ namespace IneorTaskBackend.Context
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasMaxLength(36);
 
                 entity.Property(e => e.Username)
                     .IsRequired()
@@ -53,7 +58,8 @@ namespace IneorTaskBackend.Context
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Role);
+                entity.Property(e => e.Role)
+                    .HasMaxLength(10);
 
                 entity.ToTable("users");
                 entity.HasData(SeedHelper.GetUsersSeedData());

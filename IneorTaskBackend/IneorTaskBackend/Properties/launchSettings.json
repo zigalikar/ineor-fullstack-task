@@ -20,9 +20,10 @@
     "IneorTaskBackend": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:40768",
+      "applicationUrl": "http://localhost:47350",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PORT": "5001"
       }
     }
   }

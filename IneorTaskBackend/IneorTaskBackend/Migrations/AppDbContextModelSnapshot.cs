@@ -22,11 +22,13 @@ namespace IneorTaskBackend.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(36)
+                        .HasColumnType("varchar(36)");
 
                     b.Property<string>("Country")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar(2)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -35,11 +37,13 @@ namespace IneorTaskBackend.Migrations
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -90,7 +94,7 @@ namespace IneorTaskBackend.Migrations
                         {
                             Id = "c5fc53d7-175c-49de-b071-85af9a7fb443",
                             Country = "SC",
-                            Description = "Anse Source d’Argent, in the south-west of La Digue, has often been described as the most beautiful beach in the world, and it is certainly one of the Seychelles’ most famous attractions. The beautiful mix of turquoise water, golden sand, and impressive boulders makes it a unique prospect worldwide. Access to Anse Source d’Argent is via the Union Estate, which charges 115 Rupees per person each day for access, however the outcome is well-worth the fee. The shallow, clear water, as well as the coral reef protection, means the beach is a great spot for families, and is also perfect for swimming and snorkelling. It can be difficult to swim here at low tide, as the water is extremely shallow, but at high tide, the water is deep enough to swim while still being shallow enough to be safe for most swimmers. The protection provided to the beach by the coral reef ensures that the open ocean feels far away, so parents shouldn’t worry about their kids playing in the water.",
+                            Description = "Anse Source d'Argent, in the south-west of La Digue, has often been described as the most beautiful beach in the world, and it is certainly one of the Seychelles’ most famous attractions. The beautiful mix of turquoise water, golden sand, and impressive boulders makes it a unique prospect worldwide. Access to Anse Source d’Argent is via the Union Estate, which charges 115 Rupees per person each day for access, however the outcome is well-worth the fee. The shallow, clear water, as well as the coral reef protection, means the beach is a great spot for families, and is also perfect for swimming and snorkelling. It can be difficult to swim here at low tide, as the water is extremely shallow, but at high tide, the water is deep enough to swim while still being shallow enough to be safe for most swimmers. The protection provided to the beach by the coral reef ensures that the open ocean feels far away, so parents shouldn’t worry about their kids playing in the water.",
                             ImageUrl = "https://www.seyvillas.com/img/beaches/15/2530x1467_50/la-digue-anse-source-d-argent-02.webp",
                             Name = "Anse Source D'Agent"
                         },
@@ -116,7 +120,8 @@ namespace IneorTaskBackend.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(36)
+                        .HasColumnType("varchar(36)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -129,7 +134,8 @@ namespace IneorTaskBackend.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Role")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Username")
                         .IsRequired()

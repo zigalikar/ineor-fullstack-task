@@ -4,23 +4,23 @@ Run the project with the following command while in the repository root:
     docker-compose up
 
 Frontend should then be accessible at http://localhost:80, API at http://localhost:5001 and database at http://localhost:3306.
-Swagger documentation is available at http://localhost:5001/swagger/index.html (enabled also in production configuration)
+Swagger documentation is available at http://localhost:5001/swagger/index.html (enabled also in production configuration at https://ineor-fullstack-task.herokuapp.com/swagger/index.html)
 
-The project is also hosted live at ....
+The project is also hosted live at https://ineor-fullstack-task-frontend.herokuapp.com
 
 #### Frontend
 Frontend can be ran separately in a development environment by navigating to the `./frontend` folder and running it:
 
     cd frontend && npm run start
 
-Frontend expects an API at `http://localhost:5001/api`.
+Frontend runs locally at `http://localhost:4200` expects an API at `http://localhost:5001/api`.
 
 #### Backend
 Backend can be ran separately in a development environment by navigating to the `./IneorTaskBackend/IneorTaskBackend` folder and running it:
 
     cd IneorTaskBackend/IneorTaskBackend && dotnet run
 
-Backend expects an MySQL database at `http://localhost:3306`.
+Backend runs locally at `http://localhost:5001` expects an MySQL database at `http://localhost:3306`.
 
 #### MySQL database
 I ran an MySQL container with Docker for development purposes on port `3306`.
@@ -33,6 +33,12 @@ Hosted on HTTP.
 
 #### Domain
 The domain of the task are beaches. The page shows a list of beaches with details with a search query and a sort function. Items can be added, removed, edited, and are stored in a MySQL database.
+
+#### Environments
+There are 3 different environments:
+* Development (for local development)
+* Staging (local Docker containers)
+* Production (hosted on Heroku)
 
 #### Technicalities
 Internationalization is achieved with i18n - currently two languages are support: SL and EN. Language can be changed from the dropdown menu in the top right.
@@ -53,7 +59,7 @@ Two environments are setup on both frontend and backend: `development` and `prod
 
 Data is cached on the frontend with `NgRx` and local storage (to persist user login).
 
-Exceptions are handled with Sentry on both frontend and backend (to different DSNs - both development and production still use the same DSN though).
+Exceptions are handled with Sentry on both frontend and backend (to different DSNs - both development and production still use the same DSN though). All messages sent by Sentry are visible on the Sentry dashboard.
 
 Branching strategy is visible on this repository (adding a feature).
 
